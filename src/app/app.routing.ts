@@ -20,9 +20,9 @@ export const appRoutes: Routes = [
     },
 
     {
-        path: 'xyz',
+        path: 'test',
         component: AuxComponent,
-        outlet: 'xyz'
+        outlet: 'test'
     },
 
     { path: '**', component: HomeComponent }

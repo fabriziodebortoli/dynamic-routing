@@ -4,8 +4,7 @@ import { Component, OnInit, ComponentFactoryResolver, ViewContainerRef, ViewChil
 @Component({
   template: `
       <h3>Home Component</h3>
-      <router-outlet name="home"></router-outlet>
-      <button (click)="createRouterOutlet('xyz')">add</button>
+      <button (click)="createRouterOutlet('test')">add</button>
       <button (click)="go()">go</button>
       <div #ros></div>
   `
@@ -19,15 +18,15 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.info("Home:", this.parentOutletMap);
+    console.info("HomeComponent OutletMap onInit:", this.parentOutletMap);
   }
 
-  createRouterOutlet() {
-    new RouterOutlet(this.parentOutletMap, this.ros, this.resolver, 'xyz');
-    console.info("Home:", this.parentOutletMap);
+  createRouterOutlet(name: string) {
+    new RouterOutlet(this.parentOutletMap, this.ros, this.resolver, name);
+    console.info("HomeComponent OutletMap with new RouterOutlet:", this.parentOutletMap);
   }
 
   go() {
-    this.router.navigate([{ outlets: { xyz: 'xyz' } }], { relativeTo: this.route });
+    this.router.navigate([{ outlets: { test: 'test' } }], { relativeTo: this.route });
   }
 }
