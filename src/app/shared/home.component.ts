@@ -1,12 +1,16 @@
 import { Router, RouterOutlet, RouterOutletMap, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ComponentFactoryResolver, ViewContainerRef, ViewChild } from '@angular/core';
 
+import { OutletComponent } from './outlet.component';
+
 @Component({
   template: `
       <h3>Home Component</h3>
       <button (click)="createRouterOutlet('test')">add</button>
       <button (click)="go()">go</button>
       <div #ros></div>
+
+      
   `
 })
 export class HomeComponent implements OnInit {
@@ -22,11 +26,17 @@ export class HomeComponent implements OnInit {
   }
 
   createRouterOutlet(name: string) {
-    new RouterOutlet(this.parentOutletMap, this.ros, this.resolver, name);
+    //new RouterOutlet(this.parentOutletMap, this.ros, this.resolver, name);
+
+    let factory = this.resolver.resolveComponentFactory(OutletComponent);
+    let cmpRef = this.ros.createComponent(factory);
+    // console.info(cmpRef);
+    // cmpRef.instance.
+
     console.info("HomeComponent OutletMap with new RouterOutlet:", this.parentOutletMap);
   }
 
   go() {
-    this.router.navigate([{ outlets: { test: 'test' } }], { relativeTo: this.route });
+    this.router.navigate(['/wrap', { outlets: { xyz: 'xyz' } }], { relativeTo: this.route });
   }
 }

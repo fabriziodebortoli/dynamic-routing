@@ -6,7 +6,8 @@ import { Component, OnInit, ComponentFactoryResolver, ViewContainerRef, ViewChil
         <hr>
         <button (click)="createRouterOutlet('test')">add</button>
         <button (click)="go()">go</button>
-        <div #rox></div>`
+        <div #rox></div>
+        <router-outlet></router-outlet>`
 })
 export class PageComponent implements OnInit {
 
